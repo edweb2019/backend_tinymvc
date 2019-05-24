@@ -21,7 +21,30 @@ include_once "modele.php";	// Car on utilise la fonction connecterUtilisateur()
  */
 function verifUser($login,$password)
 {
+	// NB : attention à l'architecture : 
+	// Cette fonction modifie des variables de session, 
+	// Il ne serait pas logique de la placer dans la couche modele
 
+	// 1) vérifier que login/password est correct
+	// => Cf. modele verifUserBdd($login,$passe)
+	// Qui renvoie l'id de l'utilisateur 
+	// correspondant à login/password
+
+	if ($id = verifUserBdd($login,$password)) {
+		$_SESSION["pseudo"] = $login; 
+		$_SESSION["idUser"] = $id; 
+		$_SESSION["heureConnexion"] = date("H:i:s"); 
+		$_SESSION["isAdmin"] = isAdmin($id); 
+		$_SESSION["connecte"] = true;
+		return true;
+	} else return false;
+	
+	// SI OK
+	// Créer des variables de session 
+	// Renvoyer VRAI
+
+	// SINON 
+	// Renvoyer FAUX 
 }
 
 

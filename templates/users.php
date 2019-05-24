@@ -96,6 +96,8 @@ Array
 */
 
 // préférer un appel à mkSelect("idUser",$users, ...)
+
+
 // On a peut-être reçu l'identifiant du dernier utilisateur manipulé 
 // dans la chaine de requete idLastUser 
 $idLastUser = valider('idLastUser');
