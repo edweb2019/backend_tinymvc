@@ -19,7 +19,7 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <!-- **** H E A D **** -->
 <head>	
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-	<title>TinyMVC</title>
+	<title>Chat'2019</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <!-- **** F I N **** H E A D **** -->
@@ -31,11 +31,12 @@ echo "<?xml version=\"1.0\" encoding=\"utf-8\" ?>";
 <div id="banniere">
 
 <div id="logo">
-<img src="ressources/" />
+<img src="ressources/ec-lille.png" />
 </div>
 
 <a href="index.php?view=accueil">Accueil</a>
 <a href="index.php?view=users">Utilisateurs</a>
+<a href="index.php?view=conversations">Conversations</a>
 
 <?php
 // Si l'utilisateur n'est pas connecte, on affiche un lien de connexion 
@@ -43,6 +44,6 @@ if (!valider("connecte","SESSION"))
 	echo "<a href=\"index.php?view=login\">Se connecter</a>";
 ?>
 
-<h1 id="stitre"> TinyMVC </h1>
+<h1 id="stitre"> Chat'2019 </h1>
 
 </div>

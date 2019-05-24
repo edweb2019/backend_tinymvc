@@ -21,6 +21,10 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	// on récupère le paramètre view éventuel 
 	$view = valider("view"); 
 
+	// la valeur booléenne d'une chaine de caractères
+	// est vraie pour toutes les chaînes sauf ""
+	// et "0"
+
 	// S'il est vide, on charge la vue accueil par défaut
 	if (!$view) $view = "accueil"; 
 
@@ -28,17 +32,10 @@ Les formulaires de toutes les vues générées enverront leurs données vers la 
 	switch($view)
 	{		
 
-		case "accueil" : 
-			include("templates/accueil.php");
-		break;
 
-		case "login" : 
+		case "connexion" : 
 			include("templates/login.php");
 		break; 
-
-		case "users" : 
-			include("templates/users.php");
-		break;
 
 		default : // si le template correspondant à l'argument existe, on l'affiche
 			if (file_exists("templates/$view.php"))
