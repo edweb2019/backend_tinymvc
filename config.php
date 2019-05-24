@@ -1,7 +1,7 @@
 <?php
 
 $BDD_host="localhost";
-$BDD_user="root";
-$BDD_password="mysql"; // vide sous windows
-$BDD_base="tinyMVC"; // nom de la base de données
+$BDD_user="admin";
+$BDD_password="mysql"; 
+$BDD_base="web2019"; // nom de la base de données
 ?>

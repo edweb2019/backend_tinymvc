@@ -9,10 +9,13 @@ Dans ce fichier, on définit diverses fonctions permettant de récupérer des do
 
 
 // inclure ici la librairie faciliant les requêtes SQL (en veillant à interdire les inclusions multiples)
+include_once("libs/maLibSQL.pdo.php");
 
 
-function listerUtilisateurs($classe = "both")
-{
+
+// TODO: compléter les 3 premières fonctions du fichier modele.php
+
+function listerUtilisateurs($classe = "both"){
 	// Cette fonction liste les utilisateurs de la base de données 
 	// et renvoie un tableau d'enregistrements. 
 	// Chaque enregistrement est un tableau associatif contenant les champs 
@@ -22,21 +25,42 @@ function listerUtilisateurs($classe = "both")
 	// Lorsqu'elle vaut "bl", elle ne renvoie que les utilisateurs blacklistés
 	// Lorsqu'elle vaut "nbl", elle ne renvoie que les utilisateurs non blacklistés
 
-	$SQL = "select * from users";
-	return parcoursRs(SQLSelect($SQL));
+	$SQL = "SELECT * FROM users";
+	if ($classe == "bl")
+		$SQL .= " WHERE blacklist=1"; 
+	if ($classe == "nbl")
+		$SQL .= " WHERE blacklist=0"; 
+ 
+	$ressourceMySQL = SQLSelect($SQL); 
+	// $ressourceMySQL est un objet complexe
+
+	$tab = parcoursRs($ressourceMySQL); 
+	// tableau de tableaux associatif
+
+	return $tab;
+
+	//return parcoursRs(SQLSelect($SQL));
 
 }
 
 function interdireUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à vrai 
+	$SQL = "UPDATE users SET blacklist=1 WHERE id='$idUser'";
+	SQLUpdate($SQL);
 
 }
+
+// Quel mécanisme permet d'éviter les injections SQL ?
+// 1) encadrer les entrées utilisateur par des apostrophes
+// 2) ET banaliser les éventuels guillemets présents dans les entrées 
+// NEVER TRUST USER INPUT 
 
 function autoriserUtilisateur($idUser)
 {
 	// cette fonction affecte le booléen "blacklist" à faux 
-
+	$SQL = "UPDATE users SET blacklist=0 WHERE id='$idUser'";
+	SQLUpdate($SQL);
 }
 
 /********* EXERCICE 4 *********/
