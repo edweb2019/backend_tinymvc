@@ -45,6 +45,42 @@ session_start();
 
 				// On redirigera vers la page index automatiquement
 			break;
+
+
+			case "Interdire": 
+
+				// ATTENTION : ceci n'est pas une comparaison !!
+				// Ce qui est fait : 
+				 
+				// 1) affectation de la variable $idUser
+				// (valider() protège contre les injections SQL)
+				// $idUser = valider("idUser"); 
+
+				// 2) Test de la valeur de $idUser 
+				// if ($idUser) { ...}
+
+				if ($idUser = valider("idUser")) {
+					// NB : dans les BDD, 
+					// les id auto-générés commencent à 1 
+					interdireUtilisateur($idUser);
+				}
+
+				// On demande à réafficher la vue 'users'
+				// On en profite pour indiquer à la vue 
+				// quel utilisateur présélectionner 
+				$qs = "?view=users&idLastUser=$idUser";
+				// NB : on est sûrs que la variable $idUser existe 
+				// Car l'intérieur du if était une affectation !
+
+			break; 
+
+			case "Autoriser": 
+				if ($idUser = valider("idUser")) {
+						autoriserUtilisateur($idUser);
+					}
+				$qs = "?view=users&idLastUser=$idUser";
+
+			break; 
 		}
 
 	}

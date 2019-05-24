@@ -96,9 +96,24 @@ Array
 */
 
 // préférer un appel à mkSelect("idUser",$users, ...)
+// On a peut-être reçu l'identifiant du dernier utilisateur manipulé 
+// dans la chaine de requete idLastUser 
+$idLastUser = valider('idLastUser');
+// peut valoir false ou l'id d'un utilisateur à présélectionner ... 
+
 foreach ($users as $dataUser)
 {
-	echo "<option value=\"$dataUser[id]\">\n";
+	if ($dataUser["id"] == $idLastUser) {
+		// Il faut présélectionner cet utilisateur 
+		$sel = "selected";
+	}
+	else {
+		// Il ne faut pas 
+		$sel = ""; 
+	}
+
+
+	echo "<option $sel value=\"$dataUser[id]\">\n";
 	echo  $dataUser["pseudo"];
 	if ($dataUser["blacklist"]) echo " (bl)"; 
 	else  echo " (nbl)"; 
