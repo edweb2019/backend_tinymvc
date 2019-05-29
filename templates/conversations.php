@@ -18,6 +18,7 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 
 <h1>Conversations du site</h1>
 
+<!--
 <h2>Liste des utilisateurs</h2>
 
 <?php
@@ -25,6 +26,7 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 	//tprint($users);
 	mkLiens($users,"pseudo","id","?view=users","idLastUser");
 ?>
+-->
 
 <h2>Liste des conversations actives</h2>
 
@@ -55,11 +57,22 @@ $conversations = listerConversations(); // toutes
 // mkTable($conversations); // A remplacer par mkSelect
 
 mkForm("controleur.php"); 
-mkSelect("idConv", $conversations,"id", "theme");
+
+// Si on veut présélectionner une des conversation
+// On passe son id dans le 5è argument de la fonction mkSelect
+$idLastConv = valider("idLastConv"); 
+mkSelect("idConv", $conversations,"id", "theme",$idLastConv);
 mkInput("submit","action","Activer");
 mkInput("submit","action","Archiver");
 mkInput("submit","action","Supprimer Conversation");
 endForm(); 
+
+// TODO 1: Créer les fonctions nécessaires dans la couche modele
+// TODO 2: Compléter le controleur pour appeler ces fonctions  
+// TODO 3: Présélectionner la conversation qui vient d'être éditée dans le formulaire
+// TODO 4: Ajouter un formulaire pour créer une conversation, le faire fonctionner 
+// TODO 5: Lors de la suppression d'une conversation, supprimer automatiquement TOUS LES MESSAGES de cette conversation
+
 
 ?>
 

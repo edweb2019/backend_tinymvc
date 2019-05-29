@@ -185,7 +185,7 @@ function mkLiens($tabData,$champLabel, $champCible, $urlBase=false, $nomCible=""
 		}
 
 		echo $nextData[$champLabel];
-		echo "</a>\n";
+		echo "</a><br />\n"; 
 	} 
 		
 

@@ -115,25 +115,32 @@ function listerConversations($mode="tout")
 function archiverConversation($idConversation)
 {
 	// rend une conversation inactive
-
+	$SQL = "UPDATE conversations SET active=0 WHERE id='$idConversation'"; 
+	SQLUpdate($SQL);
 }
 
 function reactiverConversation($idConversation)
 {
 	// rend une conversation active
-
+	$SQL = "UPDATE conversations SET active=1 WHERE id='$idConversation'"; 
+	SQLUpdate($SQL);
 }
 
 function creerConversation($theme)
 {
 	// crée une nouvelle conversation et renvoie son identifiant
-
+	$SQL ="INSERT INTO conversations(theme) VALUES('$theme')"; 
+	// NB : la fonction SQLInsert renvoie les identifiants auto-générés !!
+	return SQLInsert($SQL);  
 }
 
 function supprimerConversation($idConv)
 {
 	// supprime une conversation et ses messages
 	// Utiliser pour cela des mises à jour en cascade en appliquant l'intégrité référentielle
+
+	$SQL = "DELETE FROM conversations WHERE id='$idConv'";
+	SQLDelete($SQL);
 
 }
 

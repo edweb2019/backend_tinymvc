@@ -97,21 +97,21 @@ session_start();
 
 			case 'Activer': 
 				if ($idConv = valider("idConv")) {
-
+					reactiverConversation($idConv);
 				}
-				$qs="?view=conversations";
+				$qs="?view=conversations&idLastConv=$idConv";
 			break; 
 
 			case 'Archiver': 
 				if ($idConv = valider("idConv")) {
-
+					archiverConversation($idConv);
 				}
-				$qs="?view=conversations";
+				$qs="?view=conversations&idLastConv=$idConv";
 			break; 
 
 			case 'Supprimer Conversation': 
 				if ($idConv = valider("idConv")) {
-
+					supprimerConversation($idConv);
 				}
 				$qs="?view=conversations";				
 			break; 
