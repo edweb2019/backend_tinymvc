@@ -18,7 +18,7 @@ include_once("libs/maLibForms.php");
 
 
 // On récupère l'id de la conversation à afficher, dans idConv
-$idConv = getValue("idConv");
+$idConv = valider("idConv");
 if (!$idConv)
 {
 	// pas d'identifiant ! On redirige vers la page de choix de la conversation
@@ -38,16 +38,39 @@ if (!$dataConv)
 	die("La conversation n'existe pas ");
 }
 
-// Afficher le thème de la conversation courante
-tprint($dataConv);
+/*
+Array
+(
+    [theme] => Le Web en EBM
+    [active] => 1
+)
+*/
 
-// Les messages 
+// TODO: Afficher le thème de la conversation courante
+// tprint($dataConv);
+echo "<h2>$dataConv[theme]</h2>";
+
+// TODO: Aficher les messages 
 $messages = listerMessages($idConv);
-tprint($messages);
+// tprint($messages);
 
-// Ajout d'un message ?
+foreach($messages as $nextMsg) {
+	// chaque message contient contenu, auteur, couleur 
+	echo "<div style=\"color:$nextMsg[couleur];\">"; 
+	echo "[" . $nextMsg["auteur"] ."]";
+	echo " " . $nextMsg["contenu"];
+	echo "</div>";
+}
+
+// TODO: Ajout d'un message
 // Seulement si la conversation est active et si l'utilisateur est identifié ... 
+
+
+
+
+
 // Si la conversation est active, on écrit un peu de code javascript pour recharger la page régulièrement
+
 ?>
 
 
