@@ -115,6 +115,14 @@ session_start();
 				}
 				$qs="?view=conversations";				
 			break; 
+
+			case 'Nouvelle Conversation': 
+				$idConv = false;
+				if ($theme = valider("theme")) {
+					$idConv = creerConversation($theme);
+				}
+				$qs="?view=conversations&idLastConv=$idConv";		
+			break;
 		}
 
 	}

@@ -70,7 +70,15 @@ endForm();
 // TODO 1: Créer les fonctions nécessaires dans la couche modele
 // TODO 2: Compléter le controleur pour appeler ces fonctions  
 // TODO 3: Présélectionner la conversation qui vient d'être éditée dans le formulaire
+echo "<br />";
+
+
 // TODO 4: Ajouter un formulaire pour créer une conversation, le faire fonctionner 
+mkForm("controleur.php"); 
+mkInput("text","theme","");
+mkInput("submit","action","Nouvelle Conversation");
+endForm(); 
+
 // TODO 5: Lors de la suppression d'une conversation, supprimer automatiquement TOUS LES MESSAGES de cette conversation
 
 
