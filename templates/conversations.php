@@ -44,7 +44,8 @@ mkLiens($conversations,"theme", "id", "?view=chat", "idConv");
 
 <?php
 $conversations = listerConversations("inactives");
-mkTable($conversations,array("id","theme")); 
+//mkTable($conversations,array("id","theme")); 
+mkLiens($conversations,"theme", "id", "?view=chat", "idConv"); 
 // A remplacer par mkLiens
 ?>
 

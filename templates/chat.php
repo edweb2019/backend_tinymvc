@@ -65,7 +65,15 @@ foreach($messages as $nextMsg) {
 // TODO: Ajout d'un message
 // Seulement si la conversation est active et si l'utilisateur est identifié ... 
 
-
+if ($dataConv["active"])
+if (valider("connecte","SESSION"))
+{
+	mkForm("controleur.php"); 
+	mkInput("text","contenu"); 
+	mkInput("submit","action","Poster"); 
+	mkInput("hidden","idConv",$idConv);
+	endForm();
+}
 
 
 

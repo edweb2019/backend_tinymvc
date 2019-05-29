@@ -123,6 +123,16 @@ session_start();
 				}
 				$qs="?view=conversations&idLastConv=$idConv";		
 			break;
+
+			case 'Poster': 
+				if($idConv = valider("idConv"))
+				if($contenu = valider("contenu"))
+				if($idAuteur = valider("idUser","SESSION"))
+				{
+					enregistrerMessage($idConv, $idAuteur, $contenu);
+				}
+				// On revient à la vue chat POUR CETTE CONVERSATION 
+				$qs="?view=chat&idConv=$idConv";		
 		}
 
 	}
