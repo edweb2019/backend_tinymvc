@@ -81,6 +81,9 @@ endForm();
 
 // TODO 5: Lors de la suppression d'une conversation, supprimer automatiquement TOUS LES MESSAGES de cette conversation
 
+// Cf. création d'une relation d'intégrité référentielle
+// dans le moteur de base de données 
+
 
 ?>
 

@@ -159,8 +159,16 @@ function listerMessages($idConv)
 	// Liste les messages de cette conversation
 	// Champs à extraire : contenu, auteur, couleur 
 	// en ne renvoyant pas les utilisateurs blacklistés
+	// dans l'ordre chronologique de leur création 
 
+	$SQL = "SELECT m.contenu, u.pseudo as auteur, u.couleur ";
+	$SQL .= " FROM messages m INNER JOIN users u"; 
+	$SQL .= " ON m.idAuteur = u.id"; 
+	$SQL .= " WHERE m.idConversation='$idConv'"; 
+	$SQL .= " AND u.blacklist=0"; 
+	$SQL .= " ORDER BY m.id ASC"; 
 
+	return parcoursRs(SQLSelect($SQL));
 }
 
 function listerMessagesFromIndex($idConv,$index)
