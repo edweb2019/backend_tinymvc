@@ -81,6 +81,14 @@ if (valider("connecte","SESSION"))
 
 ?>
 
+<script>
+window.setTimeout(recharger,10000);
+
+function recharger(){
+	document.location.reload();
+}
+</script>
+
 
 
 

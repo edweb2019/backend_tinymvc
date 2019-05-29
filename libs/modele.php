@@ -152,6 +152,9 @@ function enregistrerMessage($idConversation, $idAuteur, $contenu)
 	// Enregistre un message dans la base en encodant les caractères spéciaux HTML : <, > et & 
 	// pour interdire les messages HTML
 
+	$contenu = htmlentities($contenu);
+	// Interdit l'injection de code HTML ou JS 
+
 	$SQL = "INSERT INTO messages(idConversation,idAuteur,contenu)"; 
 	$SQL .= " VALUES ('$idConversation', '$idAuteur', '$contenu')"; 
 

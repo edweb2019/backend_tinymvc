@@ -129,7 +129,22 @@ session_start();
 				if($contenu = valider("contenu"))
 				if($idAuteur = valider("idUser","SESSION"))
 				{
-					enregistrerMessage($idConv, $idAuteur, $contenu);
+					// TODO: "attaquer" la page chat 
+					// pour ajouter des messages  "interdits" 
+					// NEVER TRUST USER INPUT 
+					// 1) Rien ne dit que les contraintes d'affichage 
+					// du formulaire de création 
+					// sont vérifiées quand on reçoit la requete ... 
+					// Typiquement : la conversation peut etre archivée
+
+					// 2) Rien n'empêche l'utilisateur de saisir du javascript
+					// dans son message 
+					// Faille XSS : Cross-Site-Scripting
+					// Pour l'éviter : cf. fonction enregistrerMessage
+
+					$dataConv = getConversation($idConv); 
+					if ($dataConv["active"])
+						enregistrerMessage($idConv, $idAuteur, $contenu);
 				}
 				// On revient à la vue chat POUR CETTE CONVERSATION 
 				$qs="?view=chat&idConv=$idConv";		
