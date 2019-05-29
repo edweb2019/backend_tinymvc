@@ -105,6 +105,11 @@ function listerConversations($mode="tout")
 {
 	// Liste toutes les conversations ($mode="tout")
 	// OU uniquement celles actives  ($mode="actives"), ou inactives  ($mode="inactives")
+	$SQL = "SELECT * FROM conversations "; 
+	if ($mode == "actives") $SQL .= " WHERE active=1"; 
+	if ($mode == "inactives") $SQL .= " WHERE active=0"; 
+
+	return parcoursRs(SQLSelect($SQL)); 
 }
 
 function archiverConversation($idConversation)

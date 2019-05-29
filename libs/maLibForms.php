@@ -20,7 +20,7 @@ function mkLigneEntete($tabAsso,$listeChamps=false)
 		echo "\t<tr>\n";
 		foreach ($tabAsso as $cle => $val)	
 		{
-			echo "\t\t<td>$cle</td>\n";
+			echo "\t\t<th>$cle</th>\n";
 		}
 		echo "\t</tr>\n";
 	}
@@ -29,7 +29,7 @@ function mkLigneEntete($tabAsso,$listeChamps=false)
 		echo "\t<tr>\n";
 		foreach ($listeChamps as $nomChamp)	
 		{
-			echo "\t\t<td>$nomChamp</td>\n";
+			echo "\t\t<th>$nomChamp</th>\n";
 		}
 		echo "\t</tr>\n";
 	}
@@ -164,6 +164,34 @@ function mkLien($url,$label, $qs="")
 
 function mkLiens($tabData,$champLabel, $champCible, $urlBase=false, $nomCible="")
 {
+	if (count($tabData)==0) return ; 
+	// Si pas de données, on quitte 
+
+	foreach ($tabData as $nextData) {
+		// Pour chaque enregistrement
+
+		// On peut insérer des variables dans des chaines en php 
+		// uniquement si les chaines sont encadrées par des guillemets
+		//echo '<a href="' . .   '"'; 
+
+		if (!$urlBase) {
+			// On se sert du champCible comme url 
+			echo "<a href=\"$nextData[$champCible]\" >";
+		} else {
+			echo '<a href="' . $urlBase . "&"
+					. $nomCible . "=" 
+					. urlencode($nextData[$champCible])
+					.   '" >';
+		}
+
+		echo $nextData[$champLabel];
+		echo "</a>\n";
+	} 
+		
+
+
+
+
 	// produit une liste de liens (plus facile à styliser)
 	// A partir de données fournies dans un tableau associatif	
 	// Chaque lien pointe vers une url définie par le champ $champCible

@@ -18,11 +18,22 @@ include_once("libs/maLibForms.php");// mkTable, mkLiens, mkSelect ...
 
 <h1>Conversations du site</h1>
 
+<h2>Liste des utilisateurs</h2>
+
+<?php
+	$users = listerUtilisateurs(); 
+	//tprint($users);
+	mkLiens($users,"pseudo","id","?view=users","idLastUser");
+?>
+
 <h2>Liste des conversations actives</h2>
 
 <?php
 $conversations = listerConversations("actives");
-mkTable($conversations); 
+//mkTable($conversations,array("id","theme")); 
+//tprint($conversations);
+mkLiens($conversations,"theme", "id", "?view=chat", "idConv"); 
+
 // Comment n'afficher que id & thèmes ?
 // A remplacer par mkLiens
 ?>
@@ -31,7 +42,7 @@ mkTable($conversations);
 
 <?php
 $conversations = listerConversations("inactives");
-mkTable($conversations); 
+mkTable($conversations,array("id","theme")); 
 // A remplacer par mkLiens
 ?>
 
@@ -41,7 +52,15 @@ mkTable($conversations);
 <?php
 
 $conversations = listerConversations(); // toutes
-mkTable($conversations); // A remplacer par mkSelect
+// mkTable($conversations); // A remplacer par mkSelect
+
+mkForm("controleur.php"); 
+mkSelect("idConv", $conversations,"id", "theme");
+mkInput("submit","action","Activer");
+mkInput("submit","action","Archiver");
+mkInput("submit","action","Supprimer Conversation");
+endForm(); 
+
 ?>
 
 

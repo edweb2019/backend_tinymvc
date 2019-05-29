@@ -93,6 +93,28 @@ session_start();
 				$qs = "?view=users&idLastUser=$idUser";
 
 			break; 
+
+
+			case 'Activer': 
+				if ($idConv = valider("idConv")) {
+
+				}
+				$qs="?view=conversations";
+			break; 
+
+			case 'Archiver': 
+				if ($idConv = valider("idConv")) {
+
+				}
+				$qs="?view=conversations";
+			break; 
+
+			case 'Supprimer Conversation': 
+				if ($idConv = valider("idConv")) {
+
+				}
+				$qs="?view=conversations";				
+			break; 
 		}
 
 	}
